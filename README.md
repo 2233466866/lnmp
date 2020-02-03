@@ -22,7 +22,7 @@ docker run -dit \
 -v /xxx/my.cnf:/etc/my.cnf \
 --privileged=true \
 --name=lnmp \
-67065435/lnmp
+2233466866/lnmp
 ```
 ### 连接(Connect)
 ```
