@@ -19,7 +19,7 @@ chown -R www:www /www;\
 chown -R mysql:mysql /data/mysql;\
 # 全局准备
 cp /root/epel-7.repo /etc/yum.repos.d/epel-ali.repo;\
-yum install yum-fastestmirror -y;\
+yum install yum-fastestmirror git zip unzip -y;\
 # 安装Nginx
 ## 1准备工作
 yum install gcc-c++ make perl -y;\
@@ -36,7 +36,7 @@ make install;\
 ## 4安装openssl
 ## (已经通过ADD解压，无需操作)
 ## 5安装nginx
-cd /root/nginx-1.13.2;\
+cd /root/nginx-1.17.8;\
 ./configure \
 --prefix=/usr/local/nginx/ \
 --with-http_v2_module \
@@ -56,7 +56,7 @@ chown -R www:www /usr/local/nginx;\
 ## 1准备工作
 yum install autoconf libxml2-devel openssl-devel re2c -y;\
 ## 2安装php
-cd /root/php-7.2.6;\
+cd /root/php-7.3.14;\
 ./configure \
 --prefix=/usr/local/php7 \
 --enable-mysqlnd \
@@ -73,21 +73,21 @@ cp /root/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
 ### bcmath
-cd /root/php-7.2.6/ext/bcmath;\
+cd /root/php-7.3.14/ext/bcmath;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### curl
 yum install curl-devel -y;\
-cd /root/php-7.2.6/ext/curl;\
+cd /root/php-7.3.14/ext/curl;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### gd
 yum install libXpm-devel libpng-devel libjpeg-devel libwebp-devel freetype-devel -y;\
-cd /root/php-7.2.6/ext/gd;\
+cd /root/php-7.3.14/ext/gd;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config \
 --with-png-dir \
@@ -100,57 +100,57 @@ make;\
 make install;\
 ### intl
 yum install libicu-devel -y;\
-cd /root/php-7.2.6/ext/intl;\
+cd /root/php-7.3.14/ext/intl;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### mbstring
-cd /root/php-7.2.6/ext/mbstring;\
+cd /root/php-7.3.14/ext/mbstring;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### mysqli
-cd /root/php-7.2.6/ext/mysqli;\
+cd /root/php-7.3.14/ext/mysqli;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### pdo_mysql
-cd /root/php-7.2.6/ext/pdo_mysql;\
+cd /root/php-7.3.14/ext/pdo_mysql;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### sockets
-cd /root/php-7.2.6/ext/sockets;\
+cd /root/php-7.3.14/ext/sockets;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### bz2
 yum install bzip2-devel -y;\
-cd /root/php-7.2.6/ext/bz2;\
+cd /root/php-7.3.14/ext/bz2;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### zip
-cd /root/php-7.2.6/ext/zip;\
+cd /root/php-7.3.14/ext/zip;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### zlib
-cd /root/php-7.2.6/ext/zlib;\
+cd /root/php-7.3.14/ext/zlib;\
 cp config0.m4 config.m4;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### opcache
-cd /root/php-7.2.6/ext/opcache;\
+cd /root/php-7.3.14/ext/opcache;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
