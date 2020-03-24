@@ -143,12 +143,6 @@ cd /root/php-7.3.14/ext/bz2;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
-### zip
-cd /root/php-7.3.14/ext/zip;\
-/usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
-make;\
-make install;\
 ### zlib
 cd /root/php-7.3.14/ext/zlib;\
 cp config0.m4 config.m4;\
