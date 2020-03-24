@@ -162,6 +162,12 @@ cd /root/php-7.3.14/ext/opcache;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
+### redis
+cd /root/redis-3.1.2;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### swoole
 cd /root/swoole-4.4.16;\
 /usr/local/php7/bin/phpize;\
