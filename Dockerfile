@@ -155,6 +155,12 @@ cd /root/php-7.3.14/ext/opcache;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
+### swoole
+cd /root/swoole-4.4.16;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config --enable-sockets --enable-openssl --enable-http2 --enable-mysqlnd;\
+make;\
+make install;\
 ## 3目录权限
 chown -R www:www /usr/local/php7;\
 # 安装Nodejs
