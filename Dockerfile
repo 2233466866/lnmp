@@ -113,7 +113,7 @@ make;\
 make install;\
 ### mcrypt
 yum install libmcrypt-devel -y;\
-cd /root/php-7.3.14/ext/mcrypt;\
+cd /root/mcrypt-1.0.3;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
