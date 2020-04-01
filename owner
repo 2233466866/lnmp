@@ -1,0 +1,4 @@
+#!/bin/bash
+chown -R www:www /www
+chown -R mysql:mysql /data/mysql
+
