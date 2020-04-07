@@ -188,8 +188,11 @@ yum install mysql-server -y;\
 cp /root/my.cnf /etc/my.cnf;\
 cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
 cp /root/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
+# 目录权限
 cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
+cp /root/owner.service /usr/lib/systemd/system/owner.service;\
+cp /root/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 删除所有安装包
 rm -rf /root/*
 # 环境变量

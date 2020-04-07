@@ -1,0 +1,16 @@
+[Unit]
+Description=Owner service.
+After=default.target network.target
+Before=syslog.target
+
+[Service]
+User=root
+Group=root
+Type=forking
+ExecStart=/usr/bin/owner
+Restart=no
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+

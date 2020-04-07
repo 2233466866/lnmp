@@ -1,6 +1,6 @@
 [Unit]
 Description=Nginx service.
-After=default.target network.target
+After=default.target network.target syslog.target
 
 [Service]
 User=root

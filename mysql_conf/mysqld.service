@@ -1,6 +1,6 @@
 [Unit]
 Description=MySQL Server
-After=network.target syslog.target
+After=default.target network.target syslog.target
 
 [Service]
 User=mysql
