@@ -162,6 +162,13 @@ cd /root/redis-3.1.2;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
+### memcached
+yum install libmemcached-devel -y;\
+cd /root/memcached-3.1.5;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### swoole
 cd /root/swoole-4.4.16;\
 /usr/local/php7/bin/phpize;\
