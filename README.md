@@ -19,7 +19,6 @@ docker run -dit \
 -v /xxx/www:/www \
 -v /xxx/nginx.conf:/usr/local/nginx/conf/nginx.conf \
 -v /xxx/mysql:/data/mysql \
--v /xxx/my.cnf:/etc/my.cnf \
 --privileged=true \
 --name=lnmp \
 2233466866/lnmp
