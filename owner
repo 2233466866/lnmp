@@ -4,5 +4,4 @@ chown -R mysql:mysql /data/mysql
 chown -R www:www /usr/local/php7
 chown -R www:www /usr/local/node
 chown -R www:www /usr/local/nginx
-echo -e "# 作者信息\n作者QQ:67065435\n作者QQ群:821635552" > /作者信息.md
 

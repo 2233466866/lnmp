@@ -200,6 +200,8 @@ cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
 cp /root/owner.service /usr/lib/systemd/system/owner.service;\
 cp /root/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
+# 作者信息
+cp /root/作者信息.md /作者信息.md;\
 # 删除所有安装包
 rm -rf /root/*
 # 环境变量
