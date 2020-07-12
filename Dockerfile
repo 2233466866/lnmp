@@ -65,6 +65,7 @@ cd /root/php-7.3.14;\
 make;\
 make install;\
 cp /root/composer /usr/local/php7/bin/composer;\
+cp /root/cacert.pem /usr/local/php7/lib/cacert.pem;\
 cp /root/php.ini /usr/local/php7/lib/php.ini;\
 cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
 cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
