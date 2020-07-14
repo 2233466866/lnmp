@@ -174,9 +174,21 @@ cd /root/redis-3.1.2;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
+### memcache
+cd /root/memcache-4.0.5.2;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### memcached
 yum install libmemcached-devel -y;\
 cd /root/memcached-3.1.5;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
+### mongodb
+cd /root/mongodb-1.7.5;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
