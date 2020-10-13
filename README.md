@@ -17,7 +17,6 @@ docker run -dit \
 -p 9000:9000 \
 -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v /xxx/www:/www \
--v /xxx/nginx.conf:/usr/local/nginx/conf/nginx.conf \
 -v /xxx/mysql:/data/mysql \
 --privileged=true \
 --name=lnmp \
