@@ -15,7 +15,6 @@ docker run -dit \
 -p 443:443 \
 -p 3306:3306 \
 -p 9000:9000 \
--v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v /xxx/www:/www \
 -v /xxx/mysql:/data/mysql \
 --privileged=true \
