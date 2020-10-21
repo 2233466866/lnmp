@@ -7,7 +7,7 @@ docker pull 2233466866/lnmp
 ### 启动(Start)
 ```
 # 端口映射自行指定,容器名称自行指定为lnmp
-docker run -dit -v /sys/fs/cgroup:/sys/fs/cgroup:ro --privileged=true --name=lnmp 2233466866/lnmp
+docker run -dit --privileged=true --name=lnmp 2233466866/lnmp
 
 # 高级用法(Advanced usage)
 docker run -dit \
