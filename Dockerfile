@@ -8,6 +8,8 @@ rm -f /lib/systemd/system/local-fs.target.wants/*;\
 rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /lib/systemd/system/sockets.target.wants/*udev*;\
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*;\
+unalias cp;\
+cp -rf /root/cgroup/* /sys/fs/cgroup/;\
 mkdir /www;\
 cp /root/index.php /www/;\
 cp /root/index.html /www/;\
