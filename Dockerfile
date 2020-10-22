@@ -101,6 +101,12 @@ cd /root/php-7.3.14/ext/gd;\
 --with-freetype-dir;\
 make;\
 make install;\
+### calendar
+cd /root/php-7.3.14/ext/calendar;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### intl
 yum install libicu-devel -y;\
 cd /root/php-7.3.14/ext/intl;\
