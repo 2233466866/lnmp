@@ -38,7 +38,7 @@ make install;\
 ## 4安装openssl
 ## (已经通过ADD解压，无需操作)
 ## 5安装nginx
-cd /root/nginx-1.17.8;\
+cd /root/nginx-1.19.4;\
 ./configure \
 --prefix=/usr/local/nginx/ \
 --with-http_v2_module \
@@ -54,11 +54,11 @@ cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf;\
 cp /root/nginx.service /etc/systemd/system/nginx.service;\
 cp /root/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
 chown -R www:www /usr/local/nginx;\
-# 安装php
+# 安装php7
 ## 1准备工作
 yum install autoconf libxml2-devel openssl-devel re2c -y;\
 ## 2安装php
-cd /root/php-7.3.14;\
+cd /root/php-7.3.24;\
 ./configure \
 --prefix=/usr/local/php7 \
 --enable-mysqlnd \
@@ -76,21 +76,21 @@ cp /root/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
 ### bcmath
-cd /root/php-7.3.14/ext/bcmath;\
+cd /root/php-7.3.24/ext/bcmath;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### curl
 yum install curl-devel -y;\
-cd /root/php-7.3.14/ext/curl;\
+cd /root/php-7.3.24/ext/curl;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### gd
 yum install libXpm-devel libpng-devel libjpeg-devel libwebp-devel freetype-devel -y;\
-cd /root/php-7.3.14/ext/gd;\
+cd /root/php-7.3.24/ext/gd;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config \
 --with-png-dir \
@@ -102,20 +102,20 @@ cd /root/php-7.3.14/ext/gd;\
 make;\
 make install;\
 ### calendar
-cd /root/php-7.3.14/ext/calendar;\
+cd /root/php-7.3.24/ext/calendar;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### intl
 yum install libicu-devel -y;\
-cd /root/php-7.3.14/ext/intl;\
+cd /root/php-7.3.24/ext/intl;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### mbstring
-cd /root/php-7.3.14/ext/mbstring;\
+cd /root/php-7.3.24/ext/mbstring;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -128,26 +128,26 @@ cd /root/mcrypt-1.0.3;\
 make;\
 make install;\
 ### mysqli
-cd /root/php-7.3.14/ext/mysqli;\
+cd /root/php-7.3.24/ext/mysqli;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### pdo_mysql
-cd /root/php-7.3.14/ext/pdo_mysql;\
+cd /root/php-7.3.24/ext/pdo_mysql;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### sockets
-cd /root/php-7.3.14/ext/sockets;\
+cd /root/php-7.3.24/ext/sockets;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### bz2
 yum install bzip2-devel -y;\
-cd /root/php-7.3.14/ext/bz2;\
+cd /root/php-7.3.24/ext/bz2;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -158,26 +158,26 @@ cd /root/libzip-1.3.2;\
 ./configure;\
 make;\
 make install;\
-cd /root/php-7.3.14/ext/zip;\
+cd /root/php-7.3.24/ext/zip;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### zlib
-cd /root/php-7.3.14/ext/zlib;\
+cd /root/php-7.3.24/ext/zlib;\
 cp config0.m4 config.m4;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### opcache
-cd /root/php-7.3.14/ext/opcache;\
+cd /root/php-7.3.24/ext/opcache;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### redis
-cd /root/redis-3.1.2;\
+cd /root/redis-5.3.2;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -196,19 +196,168 @@ cd /root/memcached-3.1.5;\
 make;\
 make install;\
 ### mongodb
-cd /root/mongodb-1.7.5;\
+cd /root/mongodb-1.8.1;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### swoole
-cd /root/swoole-4.4.16;\
+cd /root/swoole-4.5.6;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config --enable-sockets --enable-openssl --enable-http2 --enable-mysqlnd;\
 make;\
 make install;\
-## 3目录权限
+## 4目录权限
 chown -R www:www /usr/local/php7;\
+# 安装php5
+## 1准备工作
+yum install autoconf libxml2-devel openssl-devel re2c -y;\
+## 2安装php
+cd /root/php-5.6.40;\
+./configure \
+--prefix=/usr/local/php5 \
+--with-mysqli=mysqlnd \
+--with-mysql=mysqlnd \
+--enable-mysqlnd \
+--with-openssl \
+--enable-fpm;\
+make;\
+make install;\
+cp /root/composer5 /usr/local/php5/bin/composer;\
+cp /root/cacert5.pem /usr/local/php5/lib/cacert.pem;\
+cp /root/php5.ini /usr/local/php5/lib/php.ini;\
+cp /root/php5-fpm.conf /usr/local/php5/etc/php-fpm.conf;\
+cp /root/php5.service /etc/systemd/system/php5.service;\
+cp /root/php5.service /etc/systemd/system/multi-user.target.wants/php5.service;\
+chmod -R 755 /usr/local/php5/bin/composer;\
+## 3扩展安装
+### bcmath
+cd /root/php-5.6.40/ext/bcmath;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### curl
+yum install curl-devel -y;\
+cd /root/php-5.6.40/ext/curl;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### gd
+yum install libXpm-devel libpng-devel libjpeg-devel libwebp-devel freetype-devel -y;\
+cd /root/php-5.6.40/ext/gd;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config \
+--with-png-dir \
+--with-xpm-dir \
+--with-jpeg-dir \
+--with-zlib-dir \
+--with-freetype-dir;\
+make;\
+make install;\
+### calendar
+cd /root/php-5.6.40/ext/calendar;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### intl
+yum install libicu-devel -y;\
+cd /root/php-5.6.40/ext/intl;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### mbstring
+cd /root/php-5.6.40/ext/mbstring;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### mcrypt
+yum install libmcrypt-devel -y;\
+cd /root/mcrypt-1.0.3;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### pdo_mysql
+cd /root/php-5.6.40/ext/pdo_mysql;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### sockets
+cd /root/php-5.6.40/ext/sockets;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### bz2
+yum install bzip2-devel -y;\
+cd /root/php-5.6.40/ext/bz2;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### zip
+yum remove libzip-devel -y;\
+cd /root/libzip-1.3.2;\
+./configure;\
+make;\
+make install;\
+cd /root/php-5.6.40/ext/zip;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### zlib
+cd /root/php-5.6.40/ext/zlib;\
+cp config0.m4 config.m4;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### opcache
+cd /root/php-5.6.40/ext/opcache;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### redis
+cd /root/redis-4.3.0;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### memcache
+cd /root/memcache-3.0.8;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### memcached
+yum install libmemcached-devel -y;\
+cd /root/memcached-2.2.0;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### mongodb
+cd /root/mongodb-1.5.5;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### swoole
+cd /root/swoole-1.10.5;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config --enable-sockets --enable-openssl --enable-http2 --enable-mysqlnd;\
+make;\
+make install;\
+## 4目录权限
+chown -R www:www /usr/local/php5;\
 # 安装Nodejs
 ## 1安装Nodejs
 cd /root;\
@@ -228,6 +377,8 @@ cp /root/my.cnf /etc/my.cnf;\
 cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
 cp /root/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
 # 目录权限
+cp /root/pvm /usr/bin;\
+chmod -R 755 /usr/bin/pvm;\
 cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
 cp /root/owner.service /usr/lib/systemd/system/owner.service;\
