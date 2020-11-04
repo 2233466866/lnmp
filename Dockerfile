@@ -358,6 +358,7 @@ cd /root/mongodb-1.5.5;\
 make;\
 make install;\
 ### swoole
+yum install libnghttp2-devel -y;\
 cd /root/swoole-1.10.5;\
 /usr/local/php5/bin/phpize;\
 ./configure --with-php-config=/usr/local/php5/bin/php-config --enable-sockets --enable-http2 --enable-openssl --enable-mysqlnd;\
