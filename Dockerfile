@@ -72,7 +72,8 @@ cp /root/php.ini /usr/local/php7/lib/php.ini;\
 cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
 cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
 cp /root/php7.service /etc/systemd/system/php7.service;\
-cp /root/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
+ln -s /root/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
+cp /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
 ### bcmath
@@ -228,7 +229,7 @@ cp /root/cacert5.pem /usr/local/php5/lib/cacert.pem;\
 cp /root/php5.ini /usr/local/php5/lib/php.ini;\
 cp /root/php5-fpm.conf /usr/local/php5/etc/php-fpm.conf;\
 cp /root/php5.service /etc/systemd/system/php5.service;\
-cp /root/php5.service /etc/systemd/system/multi-user.target.wants/php5.service;\
+cp /usr/local/php5/bin/php /usr/local/php5/bin/php5;\
 chmod -R 755 /usr/local/php5/bin/composer;\
 ## 3扩展安装
 ### bcmath

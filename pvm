@@ -4,17 +4,11 @@ if [ $1x == "5"x ]; then
     systemctl disable php7
     systemctl restart php5
     systemctl enable  php5
-    unalias cp
-    cp -rf /usr/local/php5/bin/php /usr/local/php5/bin/php5
-    cp -rf /usr/local/php7/bin/php /usr/local/php7/bin/php7
 elif [ $1x == "7"x ]; then
     systemctl stop    php5
     systemctl disable php5
     systemctl restart php7
     systemctl enable  php7
-    unalias cp
-    cp -rf /usr/local/php5/bin/php /usr/local/php5/bin/php5
-    cp -rf /usr/local/php7/bin/php /usr/local/php7/bin/php7
 else
     echo -e 'pvm\n    5 PHP使用版本5\n    7 PHP使用版本7'
     echo -e 'version\n    php5 -v\n    php7 -v'
