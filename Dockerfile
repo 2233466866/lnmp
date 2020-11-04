@@ -203,10 +203,14 @@ cd /root/mongodb-1.8.1;\
 make;\
 make install;\
 ### swoole
+cd /root/nghttp2-1.30.0;\
+./configure;\
+make;\
+make install;\
 cd /root/swoole-4.5.6;\
 /usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config --enable-openssl --enable-mysqlnd;\
-#### 暂时注释--enable-sockets --enable-http2
+./configure --with-php-config=/usr/local/php7/bin/php-config --enable-http2 --enable-openssl --enable-mysqlnd;\
+#### 暂时注释--enable-sockets
 make;\
 make install;\
 ## 4目录权限
@@ -355,8 +359,8 @@ make install;\
 ### swoole
 cd /root/swoole-1.10.5;\
 /usr/local/php5/bin/phpize;\
-./configure --with-php-config=/usr/local/php5/bin/php-config --enable-openssl --enable-mysqlnd;\
-#### 暂时注释--enable-sockets --enable-http2
+./configure --with-php-config=/usr/local/php5/bin/php-config --enable-http2 --enable-openssl --enable-mysqlnd;\
+#### 暂时注释--enable-sockets
 make;\
 make install;\
 ## 4目录权限
