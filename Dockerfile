@@ -62,6 +62,7 @@ cd /root/php-7.3.24;\
 ./configure \
 --prefix=/usr/local/php7 \
 --enable-mysqlnd \
+--enable-sockets \
 --with-openssl \
 --enable-fpm;\
 make;\
@@ -141,11 +142,11 @@ cd /root/php-7.3.24/ext/pdo_mysql;\
 make;\
 make install;\
 ### sockets
-cd /root/php-7.3.24/ext/sockets;\
-/usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
-make;\
-make install;\
+# cd /root/php-7.3.24/ext/sockets;\
+# /usr/local/php7/bin/phpize;\
+# ./configure --with-php-config=/usr/local/php7/bin/php-config;\
+# make;\
+# make install;\
 ### bz2
 yum install bzip2-devel -y;\
 cd /root/php-7.3.24/ext/bz2;\
@@ -209,8 +210,7 @@ make;\
 make install;\
 cd /root/swoole-4.5.6;\
 /usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config --enable-http2 --enable-openssl --enable-mysqlnd;\
-#### 暂时注释--enable-sockets
+./configure --with-php-config=/usr/local/php7/bin/php-config --enable-sockets --enable-http2 --enable-openssl --enable-mysqlnd;\
 make;\
 make install;\
 ## 4目录权限
@@ -225,6 +225,7 @@ cd /root/php-5.6.40;\
 --with-mysqli=mysqlnd \
 --with-mysql=mysqlnd \
 --enable-mysqlnd \
+--enable-sockets \
 --with-openssl \
 --enable-fpm;\
 make;\
@@ -295,11 +296,11 @@ cd /root/php-5.6.40/ext/pdo_mysql;\
 make;\
 make install;\
 ### sockets
-cd /root/php-5.6.40/ext/sockets;\
-/usr/local/php5/bin/phpize;\
-./configure --with-php-config=/usr/local/php5/bin/php-config;\
-make;\
-make install;\
+# cd /root/php-5.6.40/ext/sockets;\
+# /usr/local/php5/bin/phpize;\
+# ./configure --with-php-config=/usr/local/php5/bin/php-config;\
+# make;\
+# make install;\
 ### bz2
 yum install bzip2-devel -y;\
 cd /root/php-5.6.40/ext/bz2;\
@@ -359,8 +360,7 @@ make install;\
 ### swoole
 cd /root/swoole-1.10.5;\
 /usr/local/php5/bin/phpize;\
-./configure --with-php-config=/usr/local/php5/bin/php-config --enable-http2 --enable-openssl --enable-mysqlnd;\
-#### 暂时注释--enable-sockets
+./configure --with-php-config=/usr/local/php5/bin/php-config --enable-sockets --enable-http2 --enable-openssl --enable-mysqlnd;\
 make;\
 make install;\
 ## 4目录权限
