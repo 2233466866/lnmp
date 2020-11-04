@@ -72,7 +72,7 @@ cp /root/php.ini /usr/local/php7/lib/php.ini;\
 cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
 cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
 cp /root/php7.service /etc/systemd/system/php7.service;\
-ln -s /root/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
+ln -s /etc/systemd/system/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
 cp /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
