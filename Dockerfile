@@ -68,13 +68,14 @@ cd /root/php-7.3.24;\
 make;\
 make install;\
 cp /root/composer /usr/local/php7/bin/composer;\
+ln -s /usr/local/php7/bin/composer /usr/local/php7/bin/composer7;\
 cp /root/cacert.pem /usr/local/php7/lib/cacert.pem;\
 cp /root/php.ini /usr/local/php7/lib/php.ini;\
 cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
 cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
 cp /root/php7.service /etc/systemd/system/php7.service;\
 ln -s /etc/systemd/system/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
-cp /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
+ln -s /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
 ### bcmath
@@ -231,11 +232,12 @@ cd /root/php-5.6.40;\
 make;\
 make install;\
 cp /root/composer5 /usr/local/php5/bin/composer;\
+ln -s /usr/local/php5/bin/composer /usr/local/php5/bin/composer5;\
 cp /root/cacert5.pem /usr/local/php5/lib/cacert.pem;\
 cp /root/php5.ini /usr/local/php5/lib/php.ini;\
 cp /root/php5-fpm.conf /usr/local/php5/etc/php-fpm.conf;\
 cp /root/php5.service /etc/systemd/system/php5.service;\
-cp /usr/local/php5/bin/php /usr/local/php5/bin/php5;\
+ln -s /usr/local/php5/bin/php /usr/local/php5/bin/php5;\
 chmod -R 755 /usr/local/php5/bin/composer;\
 ## 3扩展安装
 ### bcmath

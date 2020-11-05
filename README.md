@@ -76,8 +76,39 @@ extension=xxx.so
 # xxx为PHP扩展的文件名，然后重启php
 systemctl restart php7
 ```
-### PS
+### 版本(Version)
 ```
-# 奈何本人英文水平有限，说明中有不当之处还请大家指正。
-# QQ：67065435 邮箱：67065435@qq.com
+# 2233466866/lnmp:1.3
+# 2233466866/lnmp:1.4
+CentOS
+cat /etc/centos-release
+
+Nginx
+nginx -v
+
+Node.js
+node -v
+
+MySQL
+mysql -V
+
+PHP
+php -v
+
+# 2233466866/lnmp:1.5
+CentOS
+cat /etc/centos-release
+
+Nginx
+nginx -v
+
+Node.js
+node -v
+
+MySQL
+mysql -V
+
+PHP
+php5 -v
+php7 -v
 ```
