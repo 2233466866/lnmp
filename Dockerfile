@@ -284,7 +284,7 @@ make;\
 make install;\
 ### mcrypt
 yum install libmcrypt-devel -y;\
-cd /root/mcrypt-1.0.3;\
+cd /root/php-5.6.40/ext/mcrypt;\
 /usr/local/php5/bin/phpize;\
 ./configure --with-php-config=/usr/local/php5/bin/php-config;\
 make;\
