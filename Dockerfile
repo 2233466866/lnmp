@@ -204,6 +204,12 @@ cd /root/mongodb-1.8.1;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
+### pcntl
+cd /root/php-7.3.24/ext/pcntl;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### swoole
 cd /root/nghttp2-1.30.0;\
 ./configure;\
@@ -355,6 +361,12 @@ make;\
 make install;\
 ### mongodb
 cd /root/mongodb-1.5.5;\
+/usr/local/php5/bin/phpize;\
+./configure --with-php-config=/usr/local/php5/bin/php-config;\
+make;\
+make install;\
+### pcntl
+cd /root/php-5.6.40/ext/pcntl;\
 /usr/local/php5/bin/phpize;\
 ./configure --with-php-config=/usr/local/php5/bin/php-config;\
 make;\
