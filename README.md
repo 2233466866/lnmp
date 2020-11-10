@@ -78,37 +78,6 @@ systemctl restart php7
 ```
 ### 版本(Version)
 ```
-# 2233466866/lnmp:1.3
-# 2233466866/lnmp:1.4
-CentOS
-cat /etc/centos-release
-
-Nginx
-nginx -v
-
-Node.js
-node -v
-
-MySQL
-mysql -V
-
-PHP
-php -v
-
-# 2233466866/lnmp:1.5
-CentOS
-cat /etc/centos-release
-
-Nginx
-nginx -v
-
-Node.js
-node -v
-
-MySQL
-mysql -V
-
-PHP
-php5 -v
-php7 -v
+# 各版本详细信息请参考
+https://github.com/2233466866/lnmp/wiki
 ```
