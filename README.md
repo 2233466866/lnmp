@@ -1,3 +1,8 @@
+# PS
+```
+中国过年了，最近我不更新本项目，镜像使用中有棘手的问题可以在QQ群内联系我，新年快乐！
+Chinese new year, recently I do not update this project, there are thorny problems in the use of image, you can contact me in QQ group, happy New Year!
+```
 ## QQ群669756510
 ## 使用教程(Quick start)
 ### 下载(Download)
@@ -67,6 +72,7 @@ mysql_secure_installation
 /usr/local/php7/lib/php.ini
 /usr/local/php7/etc/php-fpm.conf
 /usr/local/php7/etc/php-fpm.d/www.conf
+# 如对配置文件比较熟悉，也可以通过宿主机挂载使用自定义的配置文件
 ```
 ### PHP扩展(PHP extension)
 ```
