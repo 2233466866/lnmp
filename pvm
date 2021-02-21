@@ -10,7 +10,5 @@ elif [ $1x == "7"x ]; then
     systemctl restart php7
     systemctl enable  php7
 else
-    echo -e 'pvm\n    5 PHP使用版本5\n    7 PHP使用版本7'
-    echo -e 'version\n    php5 -v\n    php7 -v'
+    echo -e 'pvm\n    5        Switch to php-5.6.40\n    7        Switch to php-7.3.24'
 fi
-
