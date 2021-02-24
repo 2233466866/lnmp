@@ -52,7 +52,7 @@ make;\
 make install;\
 cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf;\
 cp /root/nginx.service /etc/systemd/system/nginx.service;\
-cp /root/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
+ln -s /etc/systemd/system/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
 chown -R www:www /usr/local/nginx;\
 # 安装php7
 ## 1准备工作
@@ -397,7 +397,7 @@ rpm -ivh mysql57-el7-10.noarch.rpm;\
 yum install mysql-server -y;\
 cp /root/my.cnf /etc/my.cnf;\
 cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
-cp /root/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
+ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
 # 安装Redis
 ## 1升级GCC
 yum install centos-release-scl -y;\
@@ -406,7 +406,7 @@ scl enable devtoolset-9 bash;\
 source /opt/rh/devtoolset-9/enable;\
 ## 2安装redis
 useradd redis;\
-cd /root/redis-6.0.10;\
+cd /root/redis-6.2.0;\
 make PREFIX=/usr/local/redis/ install;\
 mkdir /data/redis;\
 mkdir /data/redis/log;\
@@ -414,15 +414,15 @@ chown -R redis:redis /data/redis;\
 chown -R redis:redis /usr/local/redis;\
 cp /root/redis.conf /usr/local/redis;\
 chmod -R 600 /usr/local/redis/redis.conf;\
-cp /root/redis.service /usr/lib/systemd/system/redis.service;\
-cp /root/redis.service /etc/systemd/system/multi-user.target.wants/redis.service;\
+cp /root/redis.service /etc/systemd/system/redis.service;\
+ln -s /etc/systemd/system/redis.service /etc/systemd/system/multi-user.target.wants/redis.service;\
 # 目录权限
 cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
 cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
-cp /root/owner.service /usr/lib/systemd/system/owner.service;\
-cp /root/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
+cp /root/owner.service /etc/systemd/system/owner.service;\
+ln -s /etc/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 作者信息
 cp /root/作者信息.md /作者信息.md;\
 # 删除所有安装包
