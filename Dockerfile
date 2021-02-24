@@ -52,7 +52,7 @@ make;\
 make install;\
 cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf;\
 cp /root/nginx.service /etc/systemd/system/nginx.service;\
-cp /root/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
+ln -s /etc/systemd/system/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
 chown -R www:www /usr/local/nginx;\
 # 安装php7
 ## 1准备工作
@@ -397,14 +397,14 @@ rpm -ivh mysql57-el7-10.noarch.rpm;\
 yum install mysql-server -y;\
 cp /root/my.cnf /etc/my.cnf;\
 cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
-cp /root/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
+ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
 # 目录权限
 cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
 cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
 cp /root/owner.service /usr/lib/systemd/system/owner.service;\
-cp /root/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
+ln -s /usr/lib/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 作者信息
 cp /root/作者信息.md /作者信息.md;\
 # 删除所有安装包
