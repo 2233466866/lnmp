@@ -398,6 +398,24 @@ yum install mysql-server -y;\
 cp /root/my.cnf /etc/my.cnf;\
 cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
 cp /root/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
+# 安装Redis
+## 1升级GCC
+yum install centos-release-scl -y;\
+yum install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils -y;\
+scl enable devtoolset-9 bash;\
+source /opt/rh/devtoolset-9/enable;\
+## 2安装redis
+useradd redis;\
+cd /root/redis-6.0.10;\
+make PREFIX=/usr/local/redis/ install;\
+mkdir /data/redis;\
+mkdir /data/redis/log;\
+chown -R redis:redis /data/redis;\
+chown -R redis:redis /usr/local/redis;\
+cp /root/redis.conf /usr/local/redis;\
+chmod -R 600 /usr/local/redis/redis.conf;\
+cp /root/redis.service /usr/lib/systemd/system/redis.service;\
+cp /root/redis.service /etc/systemd/system/multi-user.target.wants/redis.service;\
 # 目录权限
 cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
@@ -410,7 +428,7 @@ cp /root/作者信息.md /作者信息.md;\
 # 删除所有安装包
 rm -rf /root/*
 # 环境变量
-ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin
+ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin:/usr/local/redis/bin
 # 创建卷
 VOLUME ["/www","/data/mysql","/sys/fs/cgroup"]
 # 初始化
