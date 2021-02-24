@@ -410,9 +410,9 @@ cd /root/redis-6.2.0;\
 make PREFIX=/usr/local/redis/ install;\
 mkdir /data/redis;\
 mkdir /data/redis/log;\
+cp /root/redis.conf /usr/local/redis;\
 chown -R redis:redis /data/redis;\
 chown -R redis:redis /usr/local/redis;\
-cp /root/redis.conf /usr/local/redis;\
 chmod -R 600 /usr/local/redis/redis.conf;\
 cp /root/redis.service /etc/systemd/system/redis.service;\
 ln -s /etc/systemd/system/redis.service /etc/systemd/system/multi-user.target.wants/redis.service;\
