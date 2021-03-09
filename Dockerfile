@@ -398,11 +398,13 @@ yum install mysql-server -y;\
 cp /root/my.cnf /etc/my.cnf;\
 cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
 ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
-# 目录权限
+# 快捷脚本
 cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
 cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
+cp /root/mysql_init /usr/bin;\
+chmod -R 755 /usr/bin/mysql_init;\
 cp /root/owner.service /usr/lib/systemd/system/owner.service;\
 ln -s /usr/lib/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 作者信息
