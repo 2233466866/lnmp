@@ -1,0 +1,44 @@
+#!/bin/bash
+
+password=`cat /var/log/mysqld.log|grep 'A temporary password'`
+password=${password:91}
+
+if [[ "${1}x" = 'x' ]];
+then
+  old=${password}
+  new=${password}
+else
+  old=${password}
+  new=$1
+fi
+/usr/bin/expect <<-EOF
+spawn mysql_secure_installation
+expect "Enter password for user root*"
+send "${old}\n"
+expect {
+  "New password:*" {exp_send "${new}\n"}
+}
+expect {
+  "Re-enter new password:*" {exp_send "${new}\n"}
+}
+expect {
+  "Change the password for root*" {exp_send "y\n"}
+}
+expect {
+  "New password:*" {exp_send "${new}\n"}
+}
+expect {
+  "Re-enter new password:*" {exp_send "${new}\n"}
+}
+expect "Do you wish to continue with the password provided*"
+send "y\n"
+expect "Remove anonymous users?*"
+send "n\n"
+expect "Disallow root login remotely?*"
+send "n\n"
+expect "Remove test database and access to it?*"
+send "y\n"
+expect "Reload privilege tables now?*"
+send "y\n"
+expect eof
+EOF
