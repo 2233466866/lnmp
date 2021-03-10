@@ -8,11 +8,10 @@ rm -f /lib/systemd/system/local-fs.target.wants/*;\
 rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /lib/systemd/system/sockets.target.wants/*udev*;\
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*;\
-unalias cp;\
-cp -rf /root/cgroup/* /sys/fs/cgroup/;\
+\cp -rfn /root/cgroup/* /sys/fs/cgroup/;\
 mkdir /www;\
-cp /root/index.php /www/;\
-cp /root/index.html /www/;\
+\cp /root/index.php /www/;\
+\cp /root/index.html /www/;\
 mkdir /data;\
 mkdir /data/mysql;\
 useradd www;\
@@ -20,7 +19,7 @@ useradd mysql;\
 chown -R www:www /www;\
 chown -R mysql:mysql /data/mysql;\
 # 全局准备
-cp /root/epel-7.repo /etc/yum.repos.d/epel-ali.repo;\
+\cp /root/epel-7.repo /etc/yum.repos.d/epel-ali.repo;\
 yum install yum-fastestmirror git zip unzip expect crontabs -y;\
 # 安装Nginx
 ## 1准备工作
@@ -50,8 +49,8 @@ cd /root/nginx-1.19.4;\
 --with-openssl=/root/openssl-1.0.2l;\
 make;\
 make install;\
-cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf;\
-cp /root/nginx.service /etc/systemd/system/nginx.service;\
+\cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf;\
+\cp /root/nginx.service /etc/systemd/system/nginx.service;\
 ln -s /etc/systemd/system/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
 chown -R www:www /usr/local/nginx;\
 # 安装php7
@@ -67,13 +66,13 @@ cd /root/php-7.3.24;\
 --enable-fpm;\
 make;\
 make install;\
-cp /root/composer /usr/local/php7/bin/composer;\
+\cp /root/composer /usr/local/php7/bin/composer;\
 ln -s /usr/local/php7/bin/composer /usr/local/php7/bin/composer7;\
-cp /root/cacert.pem /usr/local/php7/lib/cacert.pem;\
-cp /root/php.ini /usr/local/php7/lib/php.ini;\
-cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
-cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
-cp /root/php7.service /etc/systemd/system/php7.service;\
+\cp /root/cacert.pem /usr/local/php7/lib/cacert.pem;\
+\cp /root/php.ini /usr/local/php7/lib/php.ini;\
+\cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
+\cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
+\cp /root/php7.service /etc/systemd/system/php7.service;\
 ln -s /etc/systemd/system/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
 ln -s /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
 chmod -R 755 /usr/local/php7/bin/composer;\
@@ -168,7 +167,7 @@ make;\
 make install;\
 ### zlib
 cd /root/php-7.3.24/ext/zlib;\
-cp config0.m4 config.m4;\
+\cp config0.m4 config.m4;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -237,12 +236,12 @@ cd /root/php-5.6.40;\
 --enable-fpm;\
 make;\
 make install;\
-cp /root/composer5 /usr/local/php5/bin/composer;\
+\cp /root/composer5 /usr/local/php5/bin/composer;\
 ln -s /usr/local/php5/bin/composer /usr/local/php5/bin/composer5;\
-cp /root/cacert5.pem /usr/local/php5/lib/cacert.pem;\
-cp /root/php5.ini /usr/local/php5/lib/php.ini;\
-cp /root/php5-fpm.conf /usr/local/php5/etc/php-fpm.conf;\
-cp /root/php5.service /etc/systemd/system/php5.service;\
+\cp /root/cacert5.pem /usr/local/php5/lib/cacert.pem;\
+\cp /root/php5.ini /usr/local/php5/lib/php.ini;\
+\cp /root/php5-fpm.conf /usr/local/php5/etc/php-fpm.conf;\
+\cp /root/php5.service /etc/systemd/system/php5.service;\
 ln -s /usr/local/php5/bin/php /usr/local/php5/bin/php5;\
 chmod -R 755 /usr/local/php5/bin/composer;\
 ## 3扩展安装
@@ -329,7 +328,7 @@ make;\
 make install;\
 ### zlib
 cd /root/php-5.6.40/ext/zlib;\
-cp config0.m4 config.m4;\
+\cp config0.m4 config.m4;\
 /usr/local/php5/bin/phpize;\
 ./configure --with-php-config=/usr/local/php5/bin/php-config;\
 make;\
@@ -391,24 +390,24 @@ mv node-v13.9.0-linux-x64 /usr/local/node;\
 chown -R www:www /usr/local/node;\
 # 安装MySQL
 ## 1安装MySQL
-cp /root/limits.conf /etc/security/limits.conf;\
+\cp /root/limits.conf /etc/security/limits.conf;\
 cd /root/;\
 rpm -ivh mysql57-el7-10.noarch.rpm;\
 yum install mysql-server -y;\
-cp /root/my.cnf /etc/my.cnf;\
-cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
+\cp /root/my.cnf /etc/my.cnf;\
+\cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
 ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
 # 快捷脚本
-cp /root/pvm /usr/bin;\
+\cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
-cp /root/owner /usr/bin;\
+\cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
-cp /root/mysql_init /usr/bin;\
+\cp /root/mysql_init /usr/bin;\
 chmod -R 755 /usr/bin/mysql_init;\
-cp /root/owner.service /usr/lib/systemd/system/owner.service;\
+\cp /root/owner.service /usr/lib/systemd/system/owner.service;\
 ln -s /usr/lib/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 作者信息
-cp /root/作者信息.md /作者信息.md;\
+\cp /root/作者信息.md /作者信息.md;\
 # 删除所有安装包
 rm -rf /root/*
 # 环境变量
