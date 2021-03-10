@@ -3,32 +3,26 @@
 password=`cat /var/log/mysqld.log|grep 'A temporary password'`
 password=${password:91}
 
-if [[ "${1}x" = 'x' ]];
-then
-  old=${password}
-  new=${password}
-else
-  old=${password}
-  new=$1
-fi
+password1="ASDFqwer1234####"
+
 /usr/bin/expect <<-EOF
 spawn mysql_secure_installation
 expect "Enter password for user root*"
-send "${old}\n"
+send "${password}\n"
 expect {
-  "New password:*" {exp_send "${new}\n"}
+  "New password:*" {exp_send "${password1}\n"}
 }
 expect {
-  "Re-enter new password:*" {exp_send "${new}\n"}
+  "Re-enter new password:*" {exp_send "${password1}\n"}
 }
 expect {
   "Change the password for root*" {exp_send "y\n"}
 }
 expect {
-  "New password:*" {exp_send "${new}\n"}
+  "New password:*" {exp_send "${password1}\n"}
 }
 expect {
-  "Re-enter new password:*" {exp_send "${new}\n"}
+  "Re-enter new password:*" {exp_send "${password1}\n"}
 }
 expect "Do you wish to continue with the password provided*"
 send "y\n"
