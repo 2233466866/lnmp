@@ -47,12 +47,7 @@ password=`cat /var/log/mysqld.log|grep 'A temporary password'`;password=${passwo
 ```
 ### 初始化(initialize)
 ```
-# 请及时修改Mysql的密码(默认并未重置密码和初始化)
-password=`cat /var/log/mysqld.log|grep 'A temporary password'`
-password=${password:91}
-echo -e "${password}\n${password}\n${password}\nn\ny\ny\ny\ny\n"
-# 以上三条命令的输出为以下命令的输入
-mysql_secure_installation
+如你的mysql数据是全新的，那么你可以在^1.11 or ^1.11-nosql版本中，使用 mysql_init 脚本将数据库密码初始化为：ASDFqwer1234####
 ```
 ### 警告(Warning)
 ```
