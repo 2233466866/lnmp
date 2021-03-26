@@ -1,0 +1,12 @@
+name: buildx
+on:
+  push:
+    branches: [ test ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker buildx build . --file Dockerfile --tag 2233466866/lnmp:test --output "type=image,push=true" --platform linux/386,linux/s390x,linux/ppc64le,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/arm/v8
