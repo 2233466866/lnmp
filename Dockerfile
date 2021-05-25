@@ -9,7 +9,7 @@ rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /lib/systemd/system/sockets.target.wants/*udev*;\
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*;\
 \cp -rfn /root/cgroup/* /sys/fs/cgroup/;\
-timedatectl set-timezone Asia/Shanghai;\
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
 mkdir /www;\
 \cp /root/index.php /www/;\
 \cp /root/index.html /www/;\
