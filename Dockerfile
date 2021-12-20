@@ -88,7 +88,7 @@ make install;\
 yum install curl-devel -y;\
 cd /root/php-7.4.27/ext/curl;\
 /usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
+./configure CC=c99 --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### gd
@@ -120,7 +120,7 @@ rpm -ivh oniguruma5php.x86_64.rpm;\
 rpm -ivh oniguruma5php-devel.x86_64.rpm;\
 cd /root/php-7.4.27/ext/mbstring;\
 /usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
+./configure CC=c99 --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### mcrypt
