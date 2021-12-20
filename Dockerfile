@@ -285,8 +285,8 @@ cd /root/php-5.6.40/ext/intl;\
 make;\
 make install;\
 ### mbstring
-rpm -ivh oniguruma5php.x86_64.rpm
-rpm -ivh oniguruma5php-devel.x86_64.rpm
+rpm -ivh oniguruma5php.x86_64.rpm;\
+rpm -ivh oniguruma5php-devel.x86_64.rpm;\
 cd /root/php-5.6.40/ext/mbstring;\
 /usr/local/php5/bin/phpize;\
 ./configure CC=c99 --with-php-config=/usr/local/php5/bin/php-config;\
