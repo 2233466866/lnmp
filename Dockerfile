@@ -58,7 +58,7 @@ chown -R www:www /usr/local/nginx;\
 ## 1准备工作
 yum install autoconf libxml2-devel openssl-devel re2c -y;\
 ## 2安装php
-cd /root/php-7.3.24;\
+cd /root/php-7.4.27;\
 ./configure \
 --prefix=/usr/local/php7 \
 --enable-mysqlnd \
@@ -79,21 +79,21 @@ ln -s /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
 ### bcmath
-cd /root/php-7.3.24/ext/bcmath;\
+cd /root/php-7.4.27/ext/bcmath;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### curl
 yum install curl-devel -y;\
-cd /root/php-7.3.24/ext/curl;\
+cd /root/php-7.4.27/ext/curl;\
 /usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
+./configure CC=c99 --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### gd
 yum install libXpm-devel libpng-devel libjpeg-devel libwebp-devel freetype-devel -y;\
-cd /root/php-7.3.24/ext/gd;\
+cd /root/php-7.4.27/ext/gd;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config \
 --with-png-dir \
@@ -105,20 +105,20 @@ cd /root/php-7.3.24/ext/gd;\
 make;\
 make install;\
 ### calendar
-cd /root/php-7.3.24/ext/calendar;\
+cd /root/php-7.4.27/ext/calendar;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### intl
 yum install libicu-devel -y;\
-cd /root/php-7.3.24/ext/intl;\
+cd /root/php-7.4.27/ext/intl;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### mbstring
-cd /root/php-7.3.24/ext/mbstring;\
+cd /root/php-7.4.27/ext/mbstring;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -131,26 +131,26 @@ cd /root/mcrypt-1.0.3;\
 make;\
 make install;\
 ### mysqli
-cd /root/php-7.3.24/ext/mysqli;\
+cd /root/php-7.4.27/ext/mysqli;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### pdo_mysql
-cd /root/php-7.3.24/ext/pdo_mysql;\
+cd /root/php-7.4.27/ext/pdo_mysql;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### sockets
-# cd /root/php-7.3.24/ext/sockets;\
+# cd /root/php-7.4.27/ext/sockets;\
 # /usr/local/php7/bin/phpize;\
 # ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 # make;\
 # make install;\
 ### bz2
 yum install bzip2-devel -y;\
-cd /root/php-7.3.24/ext/bz2;\
+cd /root/php-7.4.27/ext/bz2;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -161,20 +161,20 @@ cd /root/libzip-1.3.2;\
 ./configure;\
 make;\
 make install;\
-cd /root/php-7.3.24/ext/zip;\
+cd /root/php-7.4.27/ext/zip;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### zlib
-cd /root/php-7.3.24/ext/zlib;\
+cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### opcache
-cd /root/php-7.3.24/ext/opcache;\
+cd /root/php-7.4.27/ext/opcache;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -205,7 +205,7 @@ cd /root/mongodb-1.8.1;\
 make;\
 make install;\
 ### pcntl
-cd /root/php-7.3.24/ext/pcntl;\
+cd /root/php-7.4.27/ext/pcntl;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -285,9 +285,11 @@ cd /root/php-5.6.40/ext/intl;\
 make;\
 make install;\
 ### mbstring
+rpm -ivh oniguruma5php.x86_64.rpm
+rpm -ivh oniguruma5php-devel.x86_64.rpm
 cd /root/php-5.6.40/ext/mbstring;\
 /usr/local/php5/bin/phpize;\
-./configure --with-php-config=/usr/local/php5/bin/php-config;\
+./configure CC=c99 --with-php-config=/usr/local/php5/bin/php-config;\
 make;\
 make install;\
 ### mcrypt
@@ -393,7 +395,7 @@ chown -R www:www /usr/local/node;\
 ## 1安装MySQL
 \cp /root/limits.conf /etc/security/limits.conf;\
 cd /root/;\
-rpm -ivh mysql57-el7-10.noarch.rpm;\
+rpm -i mysql57-el7-10.noarch.rpm;\
 yum install mysql-server -y;\
 \cp /root/my.cnf /etc/my.cnf;\
 \cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
