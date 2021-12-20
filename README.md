@@ -3,16 +3,16 @@
 ### 下载(Download)
 ```
 # 主流版本
-docker pull 2233466866/lnmp
+docker pull registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp
 # nosql版本
-docker pull 2233466866/lnmp:1.9-nosql
+docker pull registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp:1.9-nosql
 # PHP更新
 lnmp-1.13版,PHP版本使用7.4
 ```
 ### 启动(Start)
 ```
 # 端口映射自行指定,容器名称自行指定为lnmp
-docker run -dit --privileged=true --name=lnmp 2233466866/lnmp
+docker run -dit --privileged=true --name=lnmp registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp
 
 # 高级用法(Advanced usage)
 docker run -dit \
@@ -24,7 +24,7 @@ docker run -dit \
 -v /xxx/mysql:/data/mysql \
 --privileged=true \
 --name=lnmp \
-2233466866/lnmp
+registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp
 ```
 ### 连接(Connect)
 ```
