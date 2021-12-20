@@ -56,7 +56,7 @@ ln -s /etc/systemd/system/nginx.service /etc/systemd/system/multi-user.target.wa
 chown -R www:www /usr/local/nginx;\
 # 安装php7
 ## 1准备工作
-yum install autoconf libxml2-devel openssl-devel re2c -y;\
+yum install autoconf sqlite-devel libxml2-devel openssl-devel re2c -y;\
 ## 2安装php
 cd /root/php-7.4.27;\
 ./configure \
@@ -96,12 +96,10 @@ yum install libXpm-devel libpng-devel libjpeg-devel libwebp-devel freetype-devel
 cd /root/php-7.4.27/ext/gd;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config \
---with-png-dir \
---with-xpm-dir \
---with-jpeg-dir \
---with-webp-dir \
---with-zlib-dir \
---with-freetype-dir;\
+--with-xpm \
+--with-jpeg \
+--with-webp \
+--with-freetype;\
 make;\
 make install;\
 ### calendar
@@ -118,6 +116,8 @@ cd /root/php-7.4.27/ext/intl;\
 make;\
 make install;\
 ### mbstring
+rpm -ivh oniguruma5php.x86_64.rpm;\
+rpm -ivh oniguruma5php-devel.x86_64.rpm;\
 cd /root/php-7.4.27/ext/mbstring;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
@@ -161,11 +161,11 @@ cd /root/libzip-1.3.2;\
 ./configure;\
 make;\
 make install;\
-cd /root/php-7.4.27/ext/zip;\
-/usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
-make;\
-make install;\
+# cd /root/php-7.4.27/ext/zip;\
+# /usr/local/php7/bin/phpize;\
+# ./configure --with-php-config=/usr/local/php7/bin/php-config;\
+# make;\
+# make install;\
 ### zlib
 cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
@@ -285,8 +285,6 @@ cd /root/php-5.6.40/ext/intl;\
 make;\
 make install;\
 ### mbstring
-rpm -ivh oniguruma5php.x86_64.rpm;\
-rpm -ivh oniguruma5php-devel.x86_64.rpm;\
 cd /root/php-5.6.40/ext/mbstring;\
 /usr/local/php5/bin/phpize;\
 ./configure CC=c99 --with-php-config=/usr/local/php5/bin/php-config;\

@@ -6,6 +6,8 @@
 docker pull 2233466866/lnmp
 # nosql版本
 docker pull 2233466866/lnmp:1.9-nosql
+# PHP更新
+lnmp-1.13版,PHP版本使用7.4
 ```
 ### 启动(Start)
 ```
