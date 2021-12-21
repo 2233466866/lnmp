@@ -3,11 +3,11 @@
 ### 下载(Download)
 ```
 # 主流版本
-docker pull registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp
-docker pull registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp:1.13
+docker pull 2233466866/lnmp
+docker pull 2233466866/lnmp:1.13
 # nosql版本
-docker pull registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp:nosql
-docker pull registry.cn-hangzhou.aliyuncs.com/2233466866/lnmp:1.13-nosql
+docker pull 2233466866/lnmp:nosql
+docker pull 2233466866/lnmp:1.13-nosql
 # PHP更新
 lnmp-1.13版,PHP版本使用7.4
 ```
