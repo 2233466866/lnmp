@@ -51,7 +51,9 @@ password=`cat /var/log/mysqld.log|grep 'A temporary password'`;password=${passwo
 ```
 ### 初始化(initialize)
 ```
-如你的mysql数据是全新的，那么你可以在^1.11 or ^1.11-nosql版本中，使用 mysql_init 脚本将数据库密码初始化为：ASDFqwer1234####
+如你的mysql数据是全新的，那么你可以在^1.11 or ^1.11-nosql版本中，使
+用 mysql_init 脚本将数据库密码初始化为：ASDFqwer1234####，该脚本如无
+法正常运行，请通过上一步获取的初始密码，手动初始化mysql。
 ```
 ### 警告(Warning)
 ```
