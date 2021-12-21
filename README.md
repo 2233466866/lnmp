@@ -42,6 +42,7 @@ ps aux|grep php-fpm
 systemctl status nginx
 systemctl status mysqld
 systemctl status php7
+systemctl status redis
 ```
 ### 初始密码(Default password)
 ```
