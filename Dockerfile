@@ -116,11 +116,10 @@ cd /root/php-7.4.27/ext/intl;\
 make;\
 make install;\
 ### mbstring
-rpm -ivh oniguruma5php.x86_64.rpm;\
-rpm -ivh oniguruma5php-devel.x86_64.rpm;\
+yum install oniguruma-devel -y;\
 cd /root/php-7.4.27/ext/mbstring;\
 /usr/local/php7/bin/phpize;\
-./configure CC=c99 --with-php-config=/usr/local/php7/bin/php-config;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
 make install;\
 ### mcrypt
