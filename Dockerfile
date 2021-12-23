@@ -405,7 +405,7 @@ scl enable devtoolset-9 bash;\
 source /opt/rh/devtoolset-9/enable;\
 ## 2安装redis
 useradd redis;\
-cd /root/redis-6.2.0;\
+cd /root/redis-6.2.6;\
 make PREFIX=/usr/local/redis/ install;\
 mkdir /data/redis;\
 mkdir /data/redis/log;\
