@@ -157,15 +157,17 @@ make;\
 make install;\
 ### zip
 yum remove libzip-devel -y;\
-cd /root/libzip-1.3.2;\
-./configure;\
+cd /root/libzip-1.8.0;\
+mkdir build;\
+cd /root/libzip-1.8.0/build;\
+cmake ..;\
 make;\
 make install;\
-# cd /root/php-7.4.27/ext/zip;\
-# /usr/local/php7/bin/phpize;\
-# ./configure --with-php-config=/usr/local/php7/bin/php-config;\
-# make;\
-# make install;\
+cd /root/php-7.4.27/ext/zip;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### zlib
 cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
@@ -318,8 +320,10 @@ make;\
 make install;\
 ### zip
 yum remove libzip-devel -y;\
-cd /root/libzip-1.3.2;\
-./configure;\
+cd /root/libzip-1.8.0;\
+mkdir build;\
+cd /root/libzip-1.8.0/build;\
+cmake ..;\
 make;\
 make install;\
 cd /root/php-5.6.40/ext/zip;\
