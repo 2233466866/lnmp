@@ -157,17 +157,17 @@ make;\
 make install;\
 ### zip
 yum remove libzip-devel -y;\
-cd /root/libzip-1.3.2;\
-./configure;\
+cd /root/libzip-1.8.0;\
+mkdir build;\
+cd /root/libzip-1.8.0/build;\
+cmake ..;\
 make;\
 make install;\
-# cd /root/php-8.1.1/ext/zip;\
-# /usr/local/php8/bin/phpize;\
-# ./configure --with-php-config=/usr/local/php8/bin/php-config;\
-# make;\
-# make install;\
-# libzip-^0.11 需要CLI会话模式，所以这里暂时直接提供zip7.so（绝对安全无毒）
-mv /root/zip8.so /usr/local/php8/lib/php/extensions/no-debug-non-zts-20210902/zip.so;\
+cd /root/php-8.1.1/ext/zip;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
 ### zlib
 cd /root/php-8.1.1/ext/zlib;\
 \cp config0.m4 config.m4;\
@@ -325,17 +325,17 @@ make;\
 make install;\
 ### zip
 yum remove libzip-devel -y;\
-cd /root/libzip-1.3.2;\
-./configure;\
+cd /root/libzip-1.8.0;\
+mkdir build;\
+cd /root/libzip-1.8.0/build;\
+cmake ..;\
 make;\
 make install;\
-# cd /root/php-7.4.27/ext/zip;\
-# /usr/local/php7/bin/phpize;\
-# ./configure --with-php-config=/usr/local/php7/bin/php-config;\
-# make;\
-# make install;\
-# libzip-^0.11 需要CLI会话模式，所以这里暂时直接提供zip7.so（绝对安全无毒）
-mv /root/zip7.so /usr/local/php7/lib/php/extensions/no-debug-non-zts-20190902/zip.so;\
+cd /root/php-7.4.27/ext/zip;\
+/usr/local/php7/bin/phpize;\
+./configure --with-php-config=/usr/local/php7/bin/php-config;\
+make;\
+make install;\
 ### zlib
 cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
@@ -488,8 +488,10 @@ make;\
 make install;\
 ### zip
 yum remove libzip-devel -y;\
-cd /root/libzip-1.3.2;\
-./configure;\
+cd /root/libzip-1.8.0;\
+mkdir build;\
+cd /root/libzip-1.8.0/build;\
+cmake ..;\
 make;\
 make install;\
 cd /root/php-5.6.40/ext/zip;\
