@@ -1,21 +1,34 @@
 #!/bin/bash
 if [ $1x == "5"x ]; then
+    systemctl stop    php8
+    systemctl disable php8
     systemctl stop    php7
     systemctl disable php7
     systemctl restart php5
     systemctl enable  php5
 elif [ $1x == "7"x ]; then
+    systemctl stop    php8
+    systemctl disable php8
     systemctl stop    php5
     systemctl disable php5
     systemctl restart php7
     systemctl enable  php7
+elif [ $1x == "8"x ]; then
+    systemctl stop    php7
+    systemctl disable php7
+    systemctl stop    php5
+    systemctl disable php5
+    systemctl restart php8
+    systemctl enable  php8
 else
     cat <<EOF
 pvm
-    5        Switch to php-5.6.40
-    7        Switch to php-7.3.24
+    5        Switch to php-5.x
+    7        Switch to php-7.x
+    8        Switch to php-8.x
 PHP CLI Usage:
     php5 [options] [-f] <file> [--] [args...]
     php7 [options] [-f] <file> [--] [args...]
+    php8 [options] [-f] <file> [--] [args...]
 EOF
 fi

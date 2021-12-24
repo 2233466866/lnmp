@@ -21,7 +21,8 @@ chown -R www:www /www;\
 chown -R mysql:mysql /data/mysql;\
 # 全局准备
 \cp /root/epel-7.repo /etc/yum.repos.d/epel-ali.repo;\
-yum install yum-fastestmirror git zip unzip expect crontabs -y;\
+yum install yum-fastestmirror git zip cmake unzip expect crontabs -y;\
+ln -s /usr/bin/cmake3 /usr/bin/cmake;\
 # 安装Nginx
 ## 1准备工作
 yum install gcc-c++ make perl -y;\
@@ -54,6 +55,175 @@ make install;\
 \cp /root/nginx.service /etc/systemd/system/nginx.service;\
 ln -s /etc/systemd/system/nginx.service /etc/systemd/system/multi-user.target.wants/nginx.service;\
 chown -R www:www /usr/local/nginx;\
+# 安装php8
+## 1准备工作
+yum install autoconf sqlite-devel libxml2-devel openssl-devel re2c -y;\
+cd /root/php-8.1.1;\
+./configure \
+--prefix=/usr/local/php8 \
+--enable-mbstring \
+--enable-mysqlnd \
+--enable-sockets \
+--with-openssl \
+--enable-fpm;\
+make;\
+make install;\
+\cp /root/composer8 /usr/local/php8/bin/composer;\
+ln -s /usr/local/php8/bin/composer /usr/local/php8/bin/composer8;\
+\cp /root/cacert8.pem /usr/local/php8/lib/cacert.pem;\
+\cp /root/php8.ini /usr/local/php8/lib/php.ini;\
+\cp /root/php8-fpm.conf /usr/local/php8/etc/php-fpm.conf;\
+\cp /root/www8.conf /usr/local/php8/etc/php-fpm.d/www.conf;\
+\cp /root/php8.service /etc/systemd/system/php8.service;\
+ln -s /etc/systemd/system/php8.service /etc/systemd/system/multi-user.target.wants/php8.service;\
+ln -s /usr/local/php8/bin/php /usr/local/php8/bin/php8;\
+chmod -R 755 /usr/local/php8/bin/composer;\
+## 3扩展安装
+### bcmath
+cd /root/php-8.1.1/ext/bcmath;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### curl
+yum install curl-devel -y;\
+cd /root/php-8.1.1/ext/curl;\
+/usr/local/php8/bin/phpize;\
+./configure CC=c99 --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### gd
+yum install libXpm-devel libpng-devel libjpeg-devel libwebp-devel freetype-devel -y;\
+cd /root/php-8.1.1/ext/gd;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config \
+--with-xpm \
+--with-jpeg \
+--with-webp \
+--with-freetype;\
+make;\
+make install;\
+### calendar
+cd /root/php-8.1.1/ext/calendar;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### intl
+yum install libicu-devel -y;\
+cd /root/php-8.1.1/ext/intl;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### mbstring
+# yum install oniguruma-devel -y;\
+# cd /root/php-8.1.1/ext/mbstring;\
+# /usr/local/php8/bin/phpize;\
+# ./configure CC=c99 --with-php-config=/usr/local/php8/bin/php-config;\
+# make;\
+# make install;\
+### mcrypt
+yum install libmcrypt-devel -y;\
+cd /root/mcrypt-1.0.4;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### mysqli
+cd /root/php-8.1.1/ext/mysqli;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### pdo_mysql
+cd /root/php-8.1.1/ext/pdo_mysql;\
+/usr/local/php8/bin/phpize;\
+./configure CC=c99 --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### sockets
+# cd /root/php-8.1.1/ext/sockets;\
+# /usr/local/php8/bin/phpize;\
+# ./configure --with-php-config=/usr/local/php8/bin/php-config;\
+# make;\
+# make install;\
+### bz2
+yum install bzip2-devel -y;\
+cd /root/php-8.1.1/ext/bz2;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### zip
+yum remove libzip-devel -y;\
+cd /root/libzip-1.3.2;\
+./configure;\
+make;\
+make install;\
+# cd /root/php-8.1.1/ext/zip;\
+# /usr/local/php8/bin/phpize;\
+# ./configure --with-php-config=/usr/local/php8/bin/php-config;\
+# make;\
+# make install;\
+# libzip-^0.11 需要CLI会话模式，所以这里暂时直接提供zip7.so（绝对安全无毒）
+mv /root/zip8.so /usr/local/php8/lib/php/extensions/no-debug-non-zts-20210902/zip.so;\
+### zlib
+cd /root/php-8.1.1/ext/zlib;\
+\cp config0.m4 config.m4;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### opcache
+cd /root/php-8.1.1/ext/opcache;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### redis
+cd /root/redis-5.3.5;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### memcache
+cd /root/memcache-8.0;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### memcached
+yum install libmemcached-devel -y;\
+cd /root/memcached-3.1.5;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### mongodb
+cd /root/mongodb-1.12.0;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### pcntl
+cd /root/php-8.1.1/ext/pcntl;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config;\
+make;\
+make install;\
+### swoole
+cd /root/nghttp2-1.30.0;\
+./configure;\
+make;\
+make install;\
+cd /root/swoole-4.8.4;\
+/usr/local/php8/bin/phpize;\
+./configure --with-php-config=/usr/local/php8/bin/php-config --enable-sockets --enable-http2 --enable-openssl --enable-mysqlnd;\
+make;\
+make install;\
+## 4目录权限
+chown -R www:www /usr/local/php8;\
 # 安装php7
 ## 1准备工作
 yum install autoconf sqlite-devel libxml2-devel openssl-devel re2c -y;\
@@ -67,14 +237,13 @@ cd /root/php-7.4.27;\
 --enable-fpm;\
 make;\
 make install;\
-\cp /root/composer /usr/local/php7/bin/composer;\
+\cp /root/composer7 /usr/local/php7/bin/composer;\
 ln -s /usr/local/php7/bin/composer /usr/local/php7/bin/composer7;\
-\cp /root/cacert.pem /usr/local/php7/lib/cacert.pem;\
-\cp /root/php.ini /usr/local/php7/lib/php.ini;\
-\cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
-\cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
+\cp /root/cacert7.pem /usr/local/php7/lib/cacert.pem;\
+\cp /root/php7.ini /usr/local/php7/lib/php.ini;\
+\cp /root/php7-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
+\cp /root/www7.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
 \cp /root/php7.service /etc/systemd/system/php7.service;\
-ln -s /etc/systemd/system/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
 ln -s /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
 chmod -R 755 /usr/local/php7/bin/composer;\
 ## 3扩展安装
@@ -165,6 +334,8 @@ make install;\
 # ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 # make;\
 # make install;\
+# libzip-^0.11 需要CLI会话模式，所以这里暂时直接提供zip7.so（绝对安全无毒）
+mv /root/zip7.so /usr/local/php7/lib/php/extensions/no-debug-non-zts-20190902/zip.so;\
 ### zlib
 cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
@@ -409,7 +580,7 @@ ln -s /usr/lib/systemd/system/owner.service /etc/systemd/system/multi-user.targe
 # 删除所有安装包
 rm -rf /root/*
 # 环境变量
-ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin
+ENV PATH $PATH:/usr/local/php8/bin:/usr/local/php8/sbin:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin
 # 创建卷
 VOLUME ["/www","/data/mysql","/sys/fs/cgroup"]
 # 初始化
