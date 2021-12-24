@@ -166,7 +166,7 @@ make install;\
 # make;\
 # make install;\
 # libzip-^0.11 需要CLI会话模式，所以这里暂时直接提供zip7.so（绝对安全无毒）
-mv /root/zip7.so /usr/local/php7/lib/php/extensions/no-debug-non-zts-20190902/;\
+mv /root/zip7.so /usr/local/php7/lib/php/extensions/no-debug-non-zts-20190902/zip.so;\
 ### zlib
 cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
