@@ -166,7 +166,7 @@ make;\
 make install;\
 cd /root/php-8.1.1/ext/zip;\
 /usr/local/php8/bin/phpize;\
-./configure --with-php-config=/usr/local/php8/bin/php-config;\
+./configure --with-php-config=/usr/local/php8/bin/php-config PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig/;\
 make;\
 make install;\
 ### zlib
