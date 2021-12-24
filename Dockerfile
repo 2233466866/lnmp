@@ -201,6 +201,7 @@ cd /root/memcached-3.1.5;\
 ./configure --with-php-config=/usr/local/php8/bin/php-config;\
 make;\
 make install;\
+make distclean;\
 ### mongodb
 cd /root/mongodb-1.12.0;\
 /usr/local/php8/bin/phpize;\
