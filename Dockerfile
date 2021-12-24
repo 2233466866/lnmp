@@ -57,6 +57,7 @@ ln -s /etc/systemd/system/nginx.service /etc/systemd/system/multi-user.target.wa
 chown -R www:www /usr/local/nginx;\
 # 安装php8
 ## 1准备工作
+yum install oniguruma-devel -y;\
 yum install autoconf sqlite-devel libxml2-devel openssl-devel re2c -y;\
 cd /root/php-8.1.1;\
 ./configure \
