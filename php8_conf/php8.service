@@ -1,0 +1,16 @@
+[Unit]
+Description=Php8 service.
+After=default.target network.target syslog.target
+
+[Service]
+User=root
+Group=root
+Type=forking
+ExecStart=/usr/local/php8/sbin/php-fpm
+ExecReload=/bin/kill -USR2 `cat /usr/local/php8/var/run/php-fpm.pid`
+ExecStop=/bin/kill -INT `cat /usr/local/php8/var/run/php-fpm.pid`
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
