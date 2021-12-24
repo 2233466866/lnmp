@@ -67,12 +67,12 @@ cd /root/php-7.4.27;\
 --enable-fpm;\
 make;\
 make install;\
-\cp /root/composer /usr/local/php7/bin/composer;\
+\cp /root/composer7 /usr/local/php7/bin/composer;\
 ln -s /usr/local/php7/bin/composer /usr/local/php7/bin/composer7;\
-\cp /root/cacert.pem /usr/local/php7/lib/cacert.pem;\
-\cp /root/php.ini /usr/local/php7/lib/php.ini;\
-\cp /root/php-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
-\cp /root/www.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
+\cp /root/cacert7.pem /usr/local/php7/lib/cacert.pem;\
+\cp /root/php7.ini /usr/local/php7/lib/php.ini;\
+\cp /root/php7-fpm.conf /usr/local/php7/etc/php-fpm.conf;\
+\cp /root/www7.conf /usr/local/php7/etc/php-fpm.d/www.conf;\
 \cp /root/php7.service /etc/systemd/system/php7.service;\
 ln -s /etc/systemd/system/php7.service /etc/systemd/system/multi-user.target.wants/php7.service;\
 ln -s /usr/local/php7/bin/php /usr/local/php7/bin/php7;\
@@ -165,6 +165,8 @@ make install;\
 # ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 # make;\
 # make install;\
+# libzip-^0.11 需要CLI会话模式，所以这里暂时直接提供zip7.so（绝对安全无毒）
+mv /root/zip7.so /usr/local/php7/lib/php/extensions/no-debug-non-zts-20190902/;\
 ### zlib
 cd /root/php-7.4.27/ext/zlib;\
 \cp config0.m4 config.m4;\
