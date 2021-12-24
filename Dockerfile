@@ -165,7 +165,7 @@ make;\
 make install;\
 cd /root/php-7.4.27/ext/zip;\
 /usr/local/php7/bin/phpize;\
-./configure --with-php-config=/usr/local/php7/bin/php-config;\
+./configure --with-php-config=/usr/local/php7/bin/php-config PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig/;\
 make;\
 make install;\
 ### zlib
