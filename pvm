@@ -10,6 +10,12 @@ elif [ $1x == "7"x ]; then
     systemctl restart php7
     systemctl enable  php7
 else
-    echo -e 'pvm\n    5        Switch to php-5.6.40\n    7        Switch to php-7.3.24'
-    echo -e 'PHP CLI Usage:\n    php5 [options] [-f] <file> [--] [args...]\n    php7 [options] [-f] <file> [--] [args...]'
+    cat <<EOF
+pvm
+    5        Switch to php-5.x
+    7        Switch to php-7.x
+PHP CLI Usage:
+    php5 [options] [-f] <file> [--] [args...]
+    php7 [options] [-f] <file> [--] [args...]
+EOF
 fi
