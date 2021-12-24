@@ -21,7 +21,7 @@ chown -R www:www /www;\
 chown -R mysql:mysql /data/mysql;\
 # 全局准备
 \cp /root/epel-7.repo /etc/yum.repos.d/epel-ali.repo;\
-yum install yum-fastestmirror git zip cmake unzip expect crontabs -y;\
+yum install yum-fastestmirror git zip cmake3 unzip expect crontabs -y;\
 ln -s /usr/bin/cmake3 /usr/bin/cmake;\
 # 安装Nginx
 ## 1准备工作
