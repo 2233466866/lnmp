@@ -27,7 +27,7 @@ ln -s /usr/bin/cmake3 /usr/bin/cmake;\
 ## 1准备工作
 yum install gcc-c++ make perl -y;\
 ## 2安装pcre
-cd /root/pcre-8.39;\
+cd /root/pcre-8.45;\
 ./configure;\
 make;\
 make install;\
@@ -39,16 +39,16 @@ make install;\
 ## 4安装openssl
 ## (已经通过ADD解压，无需操作)
 ## 5安装nginx
-cd /root/nginx-1.19.4;\
+cd /root/nginx-1.21.4;\
 ./configure \
 --prefix=/usr/local/nginx/ \
 --with-http_v2_module \
 --with-http_ssl_module \
 --with-http_realip_module \
 --with-http_stub_status_module \
---with-pcre=/root/pcre-8.39/ \
+--with-pcre=/root/pcre-8.45/ \
 --with-zlib=/root/zlib-1.2.11/ \
---with-openssl=/root/openssl-1.0.2l;\
+--with-openssl=/root/openssl-1.1.1m;\
 make;\
 make install;\
 \cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf;\
@@ -125,7 +125,7 @@ make;\
 make install;\
 ### mcrypt
 yum install libmcrypt-devel -y;\
-cd /root/mcrypt-1.0.3;\
+cd /root/mcrypt-1.0.4;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -182,7 +182,7 @@ cd /root/php-7.4.27/ext/opcache;\
 make;\
 make install;\
 ### redis
-cd /root/redis-5.3.2;\
+cd /root/redis-5.3.5;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
@@ -201,7 +201,7 @@ cd /root/memcached-3.1.5;\
 make;\
 make install;\
 ### mongodb
-cd /root/mongodb-1.8.1;\
+cd /root/mongodb-1.12.0;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config;\
 make;\
