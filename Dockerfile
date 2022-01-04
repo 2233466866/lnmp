@@ -556,7 +556,7 @@ chown -R www:www /usr/local/php5;\
 # 安装Nodejs
 ## 1安装Nodejs
 cd /root;\
-mv node-v13.9.0-linux-x64 /usr/local/node;\
+mv node-v16.13.1-linux-x64 /usr/local/node;\
 ## 2更新npm
 /usr/local/node/bin/npm config set registry https://registry.npm.taobao.org -g;\
 /usr/local/node/bin/npm install npm -g;\
