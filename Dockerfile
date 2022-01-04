@@ -213,11 +213,11 @@ cd /root/php-7.4.27/ext/pcntl;\
 make;\
 make install;\
 ### swoole
-cd /root/nghttp2-1.30.0;\
+cd /root/nghttp2-1.46.0;\
 ./configure;\
 make;\
 make install;\
-cd /root/swoole-4.5.6;\
+cd /root/swoole-4.8.5;\
 /usr/local/php7/bin/phpize;\
 ./configure --with-php-config=/usr/local/php7/bin/php-config --enable-sockets --enable-http2 --enable-openssl --enable-mysqlnd;\
 make;\
