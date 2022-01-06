@@ -59,7 +59,6 @@ password=`cat /var/log/mysqld.log|grep 'A temporary password'`;password=${passwo
 ### 警告(Warning)
 ```
 # 请保持清醒头脑，明确自己是在容器内还是在服务器本身执行命令，以及-v挂载对文件的影响，以免造成不可挽回的损失
-# 当前Node和Python较火，故增加了对node.js的支持，是否添加对Python3.8的支持请在群内踊跃投票~~~
 ```
 ### 配置(Config)
 ```

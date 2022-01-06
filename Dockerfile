@@ -14,11 +14,8 @@ mkdir /www;\
 \cp /root/index.php /www/;\
 \cp /root/index.html /www/;\
 mkdir /data;\
-mkdir /data/mysql;\
 useradd www;\
-useradd mysql;\
 chown -R www:www /www;\
-chown -R mysql:mysql /data/mysql;\
 # 全局准备
 \cp /root/epel-7.repo /etc/yum.repos.d/epel-ali.repo;\
 yum install yum-fastestmirror git zip cmake3 unzip expect crontabs -y;\
@@ -383,38 +380,21 @@ make;\
 make install;\
 ## 4目录权限
 chown -R www:www /usr/local/php5;\
-# 安装Nodejs
-## 1安装Nodejs
-cd /root;\
-mv node-v16.13.1-linux-x64 /usr/local/node;\
-## 2更新npm
-/usr/local/node/bin/npm config set registry https://registry.npm.taobao.org -g;\
-/usr/local/node/bin/npm install npm -g;\
-## 3目录权限
-chown -R www:www /usr/local/node;\
-# 安装MySQL
-## 1安装MySQL
+# 修改limits.conf
+## 修改limits.conf
 \cp /root/limits.conf /etc/security/limits.conf;\
-cd /root/;\
-rpm -i mysql57-el7-10.noarch.rpm;\
-yum install mysql-server -y;\
-\cp /root/my.cnf /etc/my.cnf;\
-\cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
-ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
 # 快捷脚本
 \cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
 \cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
-\cp /root/mysql_init /usr/bin;\
-chmod -R 755 /usr/bin/mysql_init;\
 \cp /root/owner.service /usr/lib/systemd/system/owner.service;\
 ln -s /usr/lib/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 删除所有安装包
 rm -rf /root/*
 # 环境变量
-ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin
+ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin
 # 创建卷
-VOLUME ["/www","/data/mysql","/sys/fs/cgroup"]
+VOLUME ["/www","/sys/fs/cgroup"]
 # 初始化
 CMD ["/usr/sbin/init"]
