@@ -23,7 +23,6 @@ docker run -dit \
 -p 3306:3306 \
 -p 9000:9000 \
 -v /xxx/www:/www \
--v /xxx/mysql:/data/mysql \
 --privileged=true \
 --name=lnmp \
 2233466866/lnmp
@@ -36,25 +35,10 @@ docker exec -it lnmp /bin/bash
 ### 状态(Status)
 ```
 ps aux|grep nginx
-ps aux|grep mysql
 ps aux|grep php-fpm
 # 或者(Or)
 systemctl status nginx
-systemctl status mysqld
 systemctl status php7
-```
-### 初始密码(Default password)
-```
-cat /var/log/mysqld.log|grep 'A temporary password'
-# 或
-password=`cat /var/log/mysqld.log|grep 'A temporary password'`;password=${password:91};echo $password
-```
-### 初始化(initialize)
-```
-如你的mysql数据是全新的，那么你可以在^1.11 or ^1.11-nosql版本中，使
-用 mysql_init 脚本将数据库密码初始化为：ASDFqwer1234####，该脚本如无
-法正常运行，请通过上一步获取的初始密码，用mysql_secure_installation
-手动初始化mysql。
 ```
 ### 警告(Warning)
 ```
@@ -65,8 +49,6 @@ password=`cat /var/log/mysqld.log|grep 'A temporary password'`;password=${passwo
 #配置文件路径(Config file path)
 # Nginx
 /usr/local/nginx/conf/nginx.conf
-# MySQL
-/etc/my.cnf
 # PHP
 /usr/local/php7/lib/php.ini
 /usr/local/php7/etc/php-fpm.conf
