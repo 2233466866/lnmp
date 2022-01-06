@@ -1,6 +1,5 @@
 #!/bin/bash
 chown -R www:www /www
-chown -R www:www /usr/local/php5
 chown -R www:www /usr/local/php7
 chown -R www:www /usr/local/nginx
 
