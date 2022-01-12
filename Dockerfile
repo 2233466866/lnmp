@@ -604,6 +604,6 @@ rm -rf /root/*
 # 环境变量
 ENV PATH $PATH:/usr/local/php8/bin:/usr/local/php8/sbin:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin
 # 创建卷
-VOLUME ["/www","/data/mysql","/data/redis"]
+VOLUME ["/sys/fs/cgroup","/www","/data/mysql","/data/redis"]
 # 初始化
 CMD ["/usr/sbin/init"]
