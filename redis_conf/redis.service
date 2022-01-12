@@ -1,0 +1,14 @@
+[Unit]
+Description=Start redis on boot.
+After=default.target network.target
+
+[Service]
+User=redis
+Group=redis
+Type=forking
+ExecStart=/usr/local/redis/bin/redis-server /usr/local/redis/redis.conf
+PrivateTmp=false
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

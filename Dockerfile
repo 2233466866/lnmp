@@ -572,6 +572,24 @@ yum install mysql-server -y;\
 \cp /root/my.cnf /etc/my.cnf;\
 \cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\
 ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.target.wants/mysqld.service;\
+# 安装Redis
+## 1升级GCC
+yum install centos-release-scl -y;\
+yum install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils -y;\
+scl enable devtoolset-9 bash;\
+source /opt/rh/devtoolset-9/enable;\
+## 2安装redis
+useradd redis;\
+cd /root/redis-6.2.6;\
+make PREFIX=/usr/local/redis/ install;\
+mkdir /data/redis;\
+mkdir /data/redis/log;\
+\cp /root/redis.conf /usr/local/redis;\
+chown -R redis:redis /data/redis;\
+chown -R redis:redis /usr/local/redis;\
+chmod -R 600 /usr/local/redis/redis.conf;\
+\cp /root/redis.service /etc/systemd/system/redis.service;\
+ln -s /etc/systemd/system/redis.service /etc/systemd/system/multi-user.target.wants/redis.service;\
 # 快捷脚本
 \cp /root/pvm /usr/bin;\
 chmod -R 755 /usr/bin/pvm;\
