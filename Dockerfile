@@ -227,6 +227,6 @@ rm -rf /root/*
 # 环境变量
 ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/nginx/sbin
 # 创建卷
-VOLUME ["/www"]
+VOLUME ["/sys/fs/cgroup","/www"]
 # 初始化
 CMD ["/usr/sbin/init"]
