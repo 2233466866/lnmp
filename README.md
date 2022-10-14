@@ -59,11 +59,8 @@ docker run -dit --privileged=true --name=lnmp 2233466866/lnmp
 docker run -dit \
 -p 80:80 \
 -p 443:443 \
--p 3306:3306 \
--p 9000:9000 \
 -v /宿主机自定义目录/www:/www \
 -v /宿主机自定义目录/mysql:/data/mysql \
---privileged=true \
 --name=lnmp \
 2233466866/lnmp
 
@@ -93,19 +90,35 @@ systemctl status php8
 systemctl status redis
 ```
 
+### PHP-FPM版本切换
+```
+# 切换PHP5
+pvm 5
+
+# 切换PHP7
+pvm 7
+
+# 切换PHP8
+pvm 8
+```
+
+### PHP-命令行版本切换
+```
+# PHP5
+php5 [options] [-f] <file> [--] [args...]
+
+# PHP7
+php7 [options] [-f] <file> [--] [args...]
+
+# PHP8
+php8 [options] [-f] <file> [--] [args...]
+```
+
 ### 初始密码(Default password)
 ```
 cat /var/log/mysqld.log|grep 'A temporary password'
 # 或
 password=`cat /var/log/mysqld.log|grep 'A temporary password'`;password=${password:91};echo $password
-```
-
-### 初始化(initialize)
-```
-如你的mysql数据是全新的，那么你可以在^1.11 or ^1.11-nosql版本中，使
-用 mysql_init 脚本将数据库密码初始化为：ASDFqwer1234####，该脚本如无
-法正常运行，请通过上一步获取的初始密码，用mysql_secure_installation
-手动初始化mysql。
 ```
 
 ### 警告(Warning)

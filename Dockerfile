@@ -418,8 +418,6 @@ ln -s /etc/systemd/system/redis.service /etc/systemd/system/multi-user.target.wa
 chmod -R 755 /usr/bin/pvm;\
 \cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
-\cp /root/mysql_init /usr/bin;\
-chmod -R 755 /usr/bin/mysql_init;\
 \cp /root/owner.service /etc/systemd/system/owner.service;\
 ln -s /etc/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 删除所有安装包
