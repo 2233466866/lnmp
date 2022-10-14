@@ -9,6 +9,8 @@ rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /lib/systemd/system/sockets.target.wants/*udev*;\
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*;\
 \cp -rfn /root/cgroup/* /sys/fs/cgroup/;\
+\cp -rfn /root/systemctl /usr/bin/systemctl;\
+chmod -R 755 /usr/bin/systemctl;\
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
 mkdir /www;\
 \cp /root/index.php /www/;\
@@ -436,4 +438,4 @@ ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr
 # 创建卷
 VOLUME ["/sys/fs/cgroup","/www","/data/mysql","/data/redis"]
 # 初始化
-CMD ["/usr/sbin/init"]
+CMD ["/usr/bin/systemctl"]
