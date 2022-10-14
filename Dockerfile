@@ -1,15 +1,6 @@
 FROM centos:7
 ADD * /root/
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done);\
-rm -f /etc/systemd/system/*.wants/*;\
-rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/*;\
-rm -f /lib/systemd/system/local-fs.target.wants/*;\
-rm -f /lib/systemd/system/multi-user.target.wants/*;\
-rm -f /lib/systemd/system/sockets.target.wants/*udev*;\
-rm -f /lib/systemd/system/sockets.target.wants/*initctl*;\
-\cp -rfn /root/cgroup/* /sys/fs/cgroup/;\
-\cp -rfn /root/systemctl /usr/bin/systemctl;\
+RUN \cp -rfn /root/systemctl /usr/bin/systemctl;\
 chmod -R 755 /usr/bin/systemctl;\
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
 mkdir /www;\
@@ -436,6 +427,6 @@ rm -rf /root/*
 # 环境变量
 ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin:/usr/local/redis/bin
 # 创建卷
-VOLUME ["/sys/fs/cgroup","/www","/data/mysql","/data/redis"]
-# 初始化
-CMD ["/usr/bin/systemctl"]
+VOLUME ["/www","/data/mysql","/data/redis"]
+# 一号进程
+CMD /usr/bin/systemctl
