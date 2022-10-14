@@ -392,6 +392,7 @@ chown -R www:www /usr/local/node;\
 \cp /root/limits.conf /etc/security/limits.conf;\
 cd /root/;\
 rpm -ivh mysql57-el7-10.noarch.rpm;\
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-`echo $(date +%Y)`;\
 yum install mysql-server -y;\
 \cp /root/my.cnf /etc/my.cnf;\
 \cp /root/mysqld.service /usr/lib/systemd/system/mysqld.service;\

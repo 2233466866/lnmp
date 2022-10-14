@@ -12,7 +12,7 @@ PermissionsStartOnly=true
 ExecStartPre=/usr/bin/mysqld_pre_systemd
 ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid $MYSQLD_OPTS
 EnvironmentFile=-/etc/sysconfig/mysql
-LimitNOFILE = 655350
+LimitNOFILE = 65535
 Restart=on-failure
 RestartPreventExitStatus=1
 PrivateTmp=false
