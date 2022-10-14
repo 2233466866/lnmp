@@ -1,14 +1,8 @@
 FROM centos:7
 ADD * /root/
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done);\
-rm -f /etc/systemd/system/*.wants/*;\
-rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/*;\
-rm -f /lib/systemd/system/local-fs.target.wants/*;\
-rm -f /lib/systemd/system/multi-user.target.wants/*;\
-rm -f /lib/systemd/system/sockets.target.wants/*udev*;\
-rm -f /lib/systemd/system/sockets.target.wants/*initctl*;\
-\cp -rfn /root/cgroup/* /sys/fs/cgroup/;\
+RUN \mv /usr/bin/systemctl /usr/bin/systemctl.bak;\
+\cp /root/systemctl /usr/bin/systemctl;\
+chmod -R 755 /usr/bin/systemctl;\
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
 mkdir /www;\
 \cp /root/index.php /www/;\
@@ -407,8 +401,6 @@ ln -s /usr/lib/systemd/system/mysqld.service /etc/systemd/system/multi-user.targ
 chmod -R 755 /usr/bin/pvm;\
 \cp /root/owner /usr/bin;\
 chmod -R 755 /usr/bin/owner;\
-\cp /root/mysql_init /usr/bin;\
-chmod -R 755 /usr/bin/mysql_init;\
 \cp /root/owner.service /usr/lib/systemd/system/owner.service;\
 ln -s /usr/lib/systemd/system/owner.service /etc/systemd/system/multi-user.target.wants/owner.service;\
 # 删除所有安装包
@@ -416,6 +408,6 @@ rm -rf /root/*
 # 环境变量
 ENV PATH $PATH:/usr/local/php7/bin:/usr/local/php7/sbin:/usr/local/php5/bin:/usr/local/php5/sbin:/usr/local/nginx/sbin:/usr/local/node/bin
 # 创建卷
-VOLUME ["/sys/fs/cgroup","/www","/data/mysql"]
-# 初始化
-CMD ["/usr/sbin/init"]
+VOLUME ["/www","/data/mysql"]
+# 一号进程
+CMD /usr/bin/systemctl
