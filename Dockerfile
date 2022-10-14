@@ -1,7 +1,7 @@
 FROM centos:7
 ADD * /root/
-RUN \cp -rfn /root/systemctl /usr/bin/systemctl;\
-chmod -R 755 /usr/bin/systemctl;\
+RUN \mv /usr/bin/systemctl /usr/bin/systemctl.bak;\
+\cp /root/systemctl /usr/bin/systemctl;\
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime;\
 mkdir /www;\
 \cp /root/index.php /www/;\

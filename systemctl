@@ -2601,8 +2601,7 @@ class Systemctl:
         if len(socketfile) > 100:
             # occurs during testsuite.py for ~user/test.tmp/root path
             if debug:
-                logg.debug("https://unix.stackexchange.com/questions/367008/%s",
-                           "why-is-socket-path-length-limited-to-a-hundred-chars")
+                # https://unix.stackexchange.com/questions/367008/why-is-socket-path-length-limited-to-a-hundred-chars
                 logg.debug("old notify socketfile (%s) = %s", len(socketfile), socketfile)
             notify_name44 = o44(notify_name)
             notify_name77 = o77(notify_name)
