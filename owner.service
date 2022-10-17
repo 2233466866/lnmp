@@ -1,7 +1,6 @@
 [Unit]
-Description=Owner service.
-After=default.target network.target
-Before=syslog.target
+Description=Owner
+Before=default.target network.target
 
 [Service]
 User=root
