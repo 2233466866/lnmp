@@ -1,5 +1,5 @@
 [Unit]
-Description=MySQL Server
+Description=MySQL
 After=default.target network.target syslog.target
 
 [Service]
